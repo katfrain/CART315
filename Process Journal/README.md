@@ -27,4 +27,7 @@ Once that was sorted, I needed to figure out how the notes would fall. At first,
 After solving that, everything else went relatively smoothly. I learned how Unity’s event system works (super useful!), and I created a spawner that releases notes at specific times. There are still a few features I’d like to add, but they aren’t really necessary for this prototype. For example, I’d love to include proper feedback when a note is hit or missed (right now, it’s just console logs). I also think it’d be great to have the ability to chart exact note patterns, rather than having them fall into random lanes, kind of like Guitar Hero.
 
 Overall, I’m really happy with how this turned out. I managed to build what I was hoping to build, learned a ton, and set myself up with a solid foundation to maybe keep working on this project in the future.
+
+[In this Unity project - under Scene "1 - Experimental Protype"](../Projects/Cart%20310%20-%20Experimental%20Prototypes)
+
 ![The rhythm game prototype](../Images/rhythm_game_prototype.png)
