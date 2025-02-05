@@ -31,3 +31,21 @@ Overall, I’m really happy with how this turned out. I managed to build what I 
 [In this Unity project - under Scene "1 - Experimental Protype"](../Projects/Cart%20310%20-%20Experimental%20Prototypes)
 
 ![The rhythm game prototype](../Images/rhythm_game_prototype.png)
+
+## Exploration Prototype 2 - 02.04.2025
+### Hot Potato!
+
+With this prototype, I had a few goals in mind:
+- Play around with the physics concepts we learned in the last game
+- Add custom sprites and sounds
+- Create a simple user interface
+
+The game I made is pretty straightforward. Hot Potato! is all about keeping as many potatoes in the air as you can, while more and more keep spawning in. Instead of using a physics material, I ended up writing custom physics in the potato script. This was because I didn’t want the potato's bounce to keep increasing uncontrollably. I’m not sure if this is the best solution, but it worked well and gave me the control I needed. I also wanted to make the platform a bit more interesting, so I added the ability to rotate it, along with the usual side-to-side movement, giving you more control over the direction the potatoes go.
+
+As for the assets, I wanted some variation, so I created a few different-colored potatoes. I also made them react to bouncing off different objects, adding a little animation. It’s subtle, but I think it gives the potatoes a cute touch! I also downloaded a couple of royalty-free sound effects from the internet to implement. There’s one for when a potato spawns, when one falls, and every time it bounces on the platform. Additionally, I learned how to manipulate text to display the score and high score, which was a fun little challenge.
+
+I’m starting to get pretty comfortable with the basics of the platform now. I definitely ran into fewer issues and relied on the internet a lot less this time around, which feels like progress!
+
+[In this Unity project - under Scene "2 - Experimental Protype"](../Projects/Cart%20315%20-%20Experimental%20Prototypes)
+
+![hot potato!](../Images/hot-potato-gif.gif)
