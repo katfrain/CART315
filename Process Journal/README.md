@@ -49,3 +49,18 @@ I’m starting to get pretty comfortable with the basics of the platform now. I 
 [In this Unity project - under Scene "2 - Experimental Protype"](../Projects/Cart%20315%20-%20Experimental%20Prototypes)
 
 ![hot potato!](../Images/hot-potato-gif.gif)
+
+## Exploration Prototype 3 - 02.13.2025
+### Sprinkler Wars
+
+Ok. I’m not as proud of this one as I have been of my prototypes over the past few weeks. I mean, it works, but there’s no polish, the code is full of spaghetti, and I’m ready to forget about this one and try something new next week.
+
+The premise is simple: it’s a two-player game where resentful neighbors engage in a hose-spraying war over a fence. I wanted the water pellets to be physics-based so that players had to aim in an arc to hit their opponent. I also wanted the controls to be very simple since both players would be using the same keyboard. Each player can move back and forth, adjust their hose upwards (it lowers on its own), and shoot. I got these core mechanics working, though I’m not completely satisfied with the implementation.
+
+That said, through all this spaghetti, I did learn a lot about shooting projectiles, thanks to [this](https://youtu.be/zYN1LTMdFYg?si=dDOiGjsx3OSctZVt) youtube video. I think I’ll give these projectiles another shot in my next prototype. My biggest struggles with this project came from not fully understanding how different scripts communicate with each other, which gave me lots of headaches, time I could have spent making this game… actually fun.
+
+And I do think there’s potential here! I just might need to dig it up from the roots and start again.
+
+[In this Unity project - under Scene "3 - Experimental Protype"](../Projects/Cart%20315%20-%20Experimental%20Prototypes)
+
+![Sprinkler Wars](../Images/sprinklerwars.png)
