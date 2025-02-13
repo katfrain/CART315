@@ -1,15 +1,22 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HealthBar : MonoBehaviour
 {
     public float damage;
-    public GameObject player;
-    public waterDrop waterDrop;
-    
+    public HosePlayer player;
+    public Player PlayerSelection;
+    public GameObject GameOverText;
+
+    public enum Player
+    {
+        Player1,
+        Player2,
+    }
+
     private Slider slider;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         slider = GetComponent<Slider>();
@@ -18,32 +25,50 @@ public class HealthBar : MonoBehaviour
 
     private void OnEnable()
     {
-        if (waterDrop != null)
+        if (player != null)
         {
-            waterDrop.hitPlayer1.AddListener(player1hit);
-            waterDrop.hitPlayer2.AddListener(player2hit);
+            Debug.Log("HealthBar subscribed to player events");
+            player.hitPlayer1.AddListener(player1hit);
+            player.hitPlayer2.AddListener(player2hit);
+            GameOverText.SetActive(false);
         }
     }
 
     private void OnDisable()
     {
-        if (waterDrop != null)
+        if (player != null)
         {
-            waterDrop.hitPlayer1.RemoveListener(player1hit);
-            waterDrop.hitPlayer2.RemoveListener(player2hit);
+            player.hitPlayer1.RemoveListener(player1hit);
+            player.hitPlayer2.RemoveListener(player2hit);
+        }
+    }
+
+    void Update()
+    {
+        if (slider.value <= 0)
+        {
+            string winningPlayer;
+            if (PlayerSelection == Player.Player1) winningPlayer = "Player 2";
+            else winningPlayer = "Player 1";
+            GameOverText.GetComponent<TMP_Text>().text = "Game Over!\n" + winningPlayer + " Wins!";
+            GameOverText.SetActive(true);
+            Destroy(player.gameObject);
         }
     }
 
     private void player1hit()
     {
-        if (player != null && player.CompareTag("Player1"))
+        Debug.Log("Player 1 hit! Health is decreasing.");
+        if (PlayerSelection == Player.Player1)
         {
             slider.value -= damage;
         }
     }
+
     private void player2hit()
     {
-        if (player != null && player.CompareTag("Player2"))
+        Debug.Log("Player 2 hit! Health is decreasing.");
+        if (PlayerSelection == Player.Player2)
         {
             slider.value -= damage;
         }

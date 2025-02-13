@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 761924826751805020}
   m_Layer: 0
   m_Name: Water Drop
-  m_TagString: Untagged
+  m_TagString: Waterdrop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +120,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -167,13 +167,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 18.5
   destroyTime: 3
-  destroysDrop:
-    serializedVersion: 2
-    m_Bits: 384
-  enemy: {fileID: 0}
-  hitPlayer1:
-    m_PersistentCalls:
-      m_Calls: []
-  hitPlayer2:
-    m_PersistentCalls:
-      m_Calls: []
