@@ -74,11 +74,11 @@ Basically I knew I needed/wanted the following mechanics:
 
 Needs:
 - Player movement and gun shooting mechanics
-  - Thank you again to this youtube video!
+  - Thank you again to [this](https://youtu.be/zYN1LTMdFYg?si=dDOiGjsx3OSctZVt) youtube video!
 - Simple enemy AI
 - Treasure that takes damage while enemies are touching it
 - A health bar for the treasure
-  - Thanks to this short video
+  - Thanks to [this](https://youtu.be/lYZayXViTN8?si=yzutEf_o5F2evggJ) short video
 
 Wants:
 - Particle effects ~~~
