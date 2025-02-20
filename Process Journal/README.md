@@ -82,15 +82,16 @@ Needs:
 
 Wants:
 - Particle effects ~~~
+  - Thanks again mr sasquatch for [this](https://youtu.be/0HKSvT2gcuk?si=Hi4hPBCNi61zqG-f) video
 - Score system
 - Finally implement a dreaded menu screen
-- Power ups (didnt get to this one… maybe one day)
+- Power ups (didn't get to this one… maybe one day)
 
 I will say, even though this one feels much more polished than the last… I’m still not super proud of some of my coding choices that I made for time purposes. I figure that my knowledge of why these decisions are bad + the fact that I would do it differently if I was going further than a prototype has to count for something… right?
 
 Some of the changes I would make to the code implementation if I was going forward would be:
-- **Health bar implementation**: it sucked last time and its not great this time, im handing the health in both the treasure script and sperately in the health bar script, and the health in the health bar is based on its width just happening to be perfectly 100. If I wanted to change the size of the health bar I would be screwed unless I changed the code.
-- **Implementing different behaviours in odd scripts**: for example I implemented the entire scoring mechanic within the enemy script simply because i was lazy and i knew it would be easy to increment the score everytime the an enemy died. I had to do a few workarounds to even make this work but it probably wouldve been more worth it to just do it right
+- **Health bar implementation**: it sucked last time and it's not great this time, Im handling the health in both the treasure script and sperately in the health bar script, and the health in the health bar is based on its width just happening to be perfectly 100. If I wanted to change the size of the health bar I would be screwed unless I changed the code.
+- **Implementing different behaviours in odd scripts**: for example I implemented the entire scoring mechanic within the enemy script simply because I was lazy and I knew it would be easy to increment the score everytime the an enemy died. I had to do a few workarounds to even make this work but it probably would've been more worth it to just do it right
 
 I am probably forgetting some too… but I’m really just writing it as a reminder to myself to practice best practices and stop being lazy lol.
 Anyways, I’m happy with this game overall and I genuinely think its kinda fun :)
