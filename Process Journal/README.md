@@ -64,3 +64,38 @@ And I do think there’s potential here! I just might need to dig it up from the
 [In this Unity project - under Scene "3 - Experimental Protype"](../Projects/Cart%20315%20-%20Experimental%20Prototypes)
 
 ![Sprinkler Wars](../Images/sprinklerwars.png)
+
+## Exploration Prototype 4 - 02.20.2025
+### Treasure Keeper
+
+Building off the mess of sprinkler wars, I still wanted to make a game with a shooting mechanic, but one that actually felt complete (in its limited scope) and well, fun. I had the idea of making a top down game kinda like Journey of the Prairie King, the mini-game inside Stardew Valley (I apologize it there are more classic examples of this kind of game) where enemies spawn in on all sides but instead of waves you just have to survive as long as possible. Also in this game surviving just means keeping the enemies grubby hands off your treasure for as long as possible.
+
+Basically I knew I needed/wanted the following mechanics:
+
+Needs:
+- Player movement and gun shooting mechanics
+  - Thank you again to this youtube video!
+- Simple enemy AI
+- Treasure that takes damage while enemies are touching it
+- A health bar for the treasure
+  - Thanks to this short video
+
+Wants:
+- Particle effects ~~~
+- Score system
+- Finally implement a dreaded menu screen
+- Power ups (didnt get to this one… maybe one day)
+
+I will say, even though this one feels much more polished than the last… I’m still not super proud of some of my coding choices that I made for time purposes. I figure that my knowledge of why these decisions are bad + the fact that I would do it differently if I was going further than a prototype has to count for something… right?
+
+Some of the changes I would make to the code implementation if I was going forward would be:
+- **Health bar implementation**: it sucked last time and its not great this time, im handing the health in both the treasure script and sperately in the health bar script, and the health in the health bar is based on its width just happening to be perfectly 100. If I wanted to change the size of the health bar I would be screwed unless I changed the code.
+- **Implementing different behaviours in odd scripts**: for example I implemented the entire scoring mechanic within the enemy script simply because i was lazy and i knew it would be easy to increment the score everytime the an enemy died. I had to do a few workarounds to even make this work but it probably wouldve been more worth it to just do it right
+
+I am probably forgetting some too… but I’m really just writing it as a reminder to myself to practice best practices and stop being lazy lol.
+Anyways, I’m happy with this game overall and I genuinely think its kinda fun :)
+
+[In this Unity project - under Scene "4 - Experimental Protype", or "TK Menu Screen"](../Projects/Cart%20315%20-%20Experimental%20Prototypes)
+
+![TKGameStart.gif](../Images/TKGameStart.gif)
+![TKGameEnd.gif](../Images/TKGameEnd.gif)
