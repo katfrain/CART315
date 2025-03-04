@@ -100,3 +100,40 @@ Anyways, I’m happy with this game overall and I genuinely think its kinda fun 
 
 ![TKGameStart.gif](../Images/TKGameStart.gif)
 ![TKGameEnd.gif](../Images/TKGameEnd.gif)
+
+## Iterative Prototype 1 - 03.03.2025
+### Untitled Roguelike - Dungeon Generation
+
+I cant lie, the pressure to come up with an idea that I would be working on for the rest of the semester got to me, but I ended up settling on a Roguelike! I am really interested in procedurally generated worlds so I thought I’d dip my toes in it with a little dungeon generation.
+
+My overall idea for the game is that the player is a museum owner during the apocalypse and must go out into the dangerous world to uncover ~ lost relics of a forgotten past ~. I was thinking the game play loop would be pretty similar to Moonlighter, where you go dungeon crawling at night and shopkeep (museum keep?) during the day. However for my scope for this class, I am thinking I will be mostly sticking to just the dungeon.
+
+For my first iteration I wanted to jump right in to the map generation, and even though I went pretty simple with a grid based system, it was still much more complicated than I hoped. I started with a Room class, and created room type child classes (Entry, Easy, Medium, Hard, Exit) that are a bit redundant at the moment but I think having the separate classes will come in handy later. I also have a Door class that teleports the player between rooms (... see below for me having trouble with this mechanic, and my fixed version)
+
+![BadTeleporter.gif](../Images/BadTeleporter.gif)
+![GoodTeleporter.gif](../Images/GoodTeleporter.gif)
+
+I created a generator using a breadth-first generation algorithm using a queue so that the rooms would generate in all directions. It starts with an entry room and begins creating new adjacent rooms given a random number of doors. When generating the amount of doors each room had I also had to take into account how many rooms were left so I didnt accidentally create doors that led to nowhere.
+
+I also didn't want to have the entry room go directly into a hard room, so I made sure that each room could only go up 1 difficulty from the previous room so it gets harder the further you go form the entrance.
+
+Ideas for the future ~
+- Infinite Dungeon: After reaching the purple exit room, you advance to a new level with difficulty increased
+- Combat system
+- Different types of enemies
+- Inventory system and treasure
+- Big relic room at the end of each floor where you have to protect your excavator while enemies swarm (can reuse a lot from treasure keeper here heheh)
+- Fine-tune the dungeon generation: maybe limit hard rooms or change probabilities
+
+Enjoy some of my generated maps :)
+
+Legend ~
+- Blue: Entry
+- Green: Easy Difficulty
+- Yellow: Medium Difficulty
+- Red: Hard Difficulty
+- Purple: Exit
+
+![DungeonGeneration1.png](../Images/DungeonGeneration1.png)
+![DungeonGeneration2.png](../Images/DungeonGeneration2.png)
+![DungeonGeneration3.png](../Images/DungeonGeneration3.png)
