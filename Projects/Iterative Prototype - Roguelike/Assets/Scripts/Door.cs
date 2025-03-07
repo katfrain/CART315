@@ -2,6 +2,7 @@
 
 public class Door : MonoBehaviour
 {
+    [SerializeField] private Teleporter entryTeleporter, exitTeleporter;
     private Vector3 _position;
     private float _width;
     private float _height;
@@ -46,6 +47,25 @@ public class Door : MonoBehaviour
         {
             _direction = value; 
             this.transform.rotation = Quaternion.Euler(0, 0, _direction);
+            switch (_direction)
+            {
+                case 0:
+                    entryTeleporter.direction = Teleporter.Direction.left;
+                    exitTeleporter.direction = Teleporter.Direction.right;
+                    break;
+                case 90:
+                    entryTeleporter.direction = Teleporter.Direction.up;
+                    exitTeleporter.direction = Teleporter.Direction.down;
+                    break;
+                case 180:
+                    entryTeleporter.direction = Teleporter.Direction.right;
+                    exitTeleporter.direction = Teleporter.Direction.left;
+                    break;
+                case 270:
+                    entryTeleporter.direction = Teleporter.Direction.down;
+                    exitTeleporter.direction = Teleporter.Direction.up;
+                    break;
+            }
         }
     }
 

@@ -6,28 +6,69 @@ public class RoomGenerator : MonoBehaviour
     [SerializeField] private int initialNumRooms = 25;  // Number of rooms to generate
     [SerializeField] private Room[] roomPrefabs = new Room[5];  // Room prefabs based on difficulty
     [SerializeField] private Door doorPrefab;
-    [SerializeField] private float height = 1;
+    [SerializeField] private float _height = 1;
+    [SerializeField] private Player player;
     
     private int numRooms;
     private Room _entryRoom;
     private List<Room> _generatedRooms = new List<Room>(); // Keeps track of generated rooms
     private Queue<Room> _roomQueue = new Queue<Room>(); // Queue for breadth-first generation
-    private float width;
+    private float _width;
+    
+    private int _levelCount = 0;
     
     void Start()
     {
-        width = height * 2;
+        _levelCount = 0;
+        _width = _height * 2;
         numRooms = initialNumRooms;
+        GenerateNewLevel();
+    }
+
+    public float height
+    {
+        get { return _height; }
+    }
+
+    public float width
+    {
+        get { return _width; }
+    }
+    public void GenerateNewLevel() {
+        // If entering a new level above level 0, clear level zero and reset position
+        // Might make new levels different scenes in the future
+        if (_levelCount >= 0)
+        {
+            clearRooms();
+            player.transform.position = new Vector3(0,0,0);
+        }
         _entryRoom = Instantiate(roomPrefabs[0], Vector3.zero, Quaternion.identity);
         _entryRoom.SetRoomType(Room.RoomTypes.Entry);
         _entryRoom.setEntranceDoor(Room.DoorType.Bottom);
-        _entryRoom.transform.localScale = new Vector3(width, height, 0);
+        _entryRoom.transform.localScale = new Vector3(_width, _height, 0);
         _generatedRooms.Add(_entryRoom);
         _roomQueue.Enqueue(_entryRoom);  // Add entry room to the queue
         numRooms--;  // Reduce room count
 
         // Begin breadth-first room generation
+        _levelCount++;
         GenerateRooms();
+    }
+
+    private void clearRooms()
+    {
+        foreach (Room room in _generatedRooms)
+        {
+            Destroy(room.gameObject);
+        }
+
+        foreach (Room room in _roomQueue)
+        {
+            Destroy(room.gameObject);
+        }
+        
+        _roomQueue.Clear();
+        _generatedRooms.Clear();
     }
 
     private void GenerateRooms()
@@ -61,25 +102,26 @@ public class RoomGenerator : MonoBehaviour
                 switch (door)
                 {
                     case Room.DoorType.Left:
-                        newPosition = (Vector2)currentRoom.transform.position + Vector2.left * width;
-                        doorPos.x -= width / 2;
+                        newPosition = (Vector2)currentRoom.transform.position + Vector2.left * _width;
+                        doorPos.x -= _width / 2;
                         oppositeDoor = Room.DoorType.Right;
                         break;
                     case Room.DoorType.Right:
-                        newPosition = (Vector2)currentRoom.transform.position + Vector2.right * width;
-                        doorPos.x += width / 2;
+                        newPosition = (Vector2)currentRoom.transform.position + Vector2.right * _width;
+                        doorPos.x += _width / 2;
+                        doorRotation = 180;
                         oppositeDoor = Room.DoorType.Left;
                         break;
                     case Room.DoorType.Top:
-                        newPosition = (Vector2)currentRoom.transform.position + Vector2.up * height;
-                        doorPos.y += height / 2;
+                        newPosition = (Vector2)currentRoom.transform.position + Vector2.up * _height;
+                        doorPos.y += _height / 2;
                         doorRotation = 90;
                         oppositeDoor = Room.DoorType.Bottom;
                         break;
                     case Room.DoorType.Bottom:
-                        newPosition = (Vector2)currentRoom.transform.position + Vector2.down * height;
-                        doorPos.y -= height / 2;
-                        doorRotation = 90;
+                        newPosition = (Vector2)currentRoom.transform.position + Vector2.down * _height;
+                        doorPos.y -= _height / 2;
+                        doorRotation = 270;
                         oppositeDoor = Room.DoorType.Top;
                         break;
                 }
@@ -107,8 +149,8 @@ public class RoomGenerator : MonoBehaviour
                     // instantiate doors
                     Door newDoor = Instantiate(doorPrefab, doorPos, Quaternion.identity);
                     newDoor.Direction = doorRotation;
-                    newDoor.Width = (float)(width * 0.1);
-                    newDoor.Height = (float)(height * 0.4);
+                    newDoor.Width = (float)(_width * 0.1);
+                    newDoor.Height = (float)(_height * 0.4);
 
                     // Enqueue the new room for further processing
                     _roomQueue.Enqueue(newRoom);
