@@ -137,3 +137,17 @@ Legend ~
 ![DungeonGeneration1.png](../Images/DungeonGeneration1.png)
 ![DungeonGeneration2.png](../Images/DungeonGeneration2.png)
 ![DungeonGeneration3.png](../Images/DungeonGeneration3.png)
+
+## Iterative Prototype 2 - 03.13.2025
+### Untitled Roguelike - Dungeon Generation
+
+
+It's midterm week and the amount of energy it took to resist the urge to work on this game instead of studying was insane. With all the studying I had to do, I didn’t get as much done in this iteration as I’d hoped, but I did create a checklist and expanded on my previous map generation to make it fully playable and infinitely generated.
+
+The following outlines my minimum viable product, basically what I hope the accomplish by the end of the semester so I have something playable and maybe fun. I originally wanted to set up the foundation for the basic gameplay loop this week, but alas, I only managed to complete the infinite levels portion. Right now, I don’t have much beyond a player and some rooms, but the movement and dungeon flow are finally starting to feel exactly like what I pictured.
+
+![checklist.png](../Images/checklist.png)
+
+I have three more iterations and 5 more sections to go, so Im not exactly sure what the game is gonna look like by the last class, but honestly I’m not too worried. I’m having so much fun with this that I’ll probably keep working on it through the summer anyway.
+
+![infinite_dungeon.gif](../Images/infinite_dungeon.gif)
