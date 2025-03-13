@@ -39,7 +39,11 @@ public class Room : MonoBehaviour
     public DoorType EntranceDoor => _entranceDoor;
 
     // Public Setters
-    public void SetRoomType(RoomTypes roomType) => _roomType = roomType;
+    public void SetRoomType(RoomTypes roomType)
+    {
+        Debug.Log("Attempting to set room type");
+        _roomType = roomType;
+    }
     public void SetNextRooms(Room[] nextRooms) => _nextRooms = nextRooms;
     public void SetPreviousRoom(Room previousRoom) => _previousRoom = previousRoom;
     public void setEntranceDoor(DoorType door) => _entranceDoor = door;
