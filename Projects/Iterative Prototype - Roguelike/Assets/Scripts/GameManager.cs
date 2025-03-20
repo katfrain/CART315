@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public Camera MainCamera { get; private set; }
     public RoomGenerator RoomGenerator { get; private set; }
+    public Room.DoorType EntranceDoor { get; set; }
     
     public LevelText lt { get; private set; }
 
@@ -22,15 +23,15 @@ public class GameManager : MonoBehaviour
         }
 
         MainCamera = Camera.main;
-        RoomGenerator = FindFirstObjectByType<RoomGenerator>();
         lt = FindFirstObjectByType<LevelText>();
-
-        if (RoomGenerator == null)
-            Debug.LogWarning("RoomGenerator could not be found in the scene.");
+        
     }
 
     private void Start()
     {
+        RoomGenerator = RoomGenerator.Instance;
+        if (RoomGenerator == null)
+            Debug.LogWarning("RoomGenerator could not be found in the scene.");
         setLevelText("0");
     }
 

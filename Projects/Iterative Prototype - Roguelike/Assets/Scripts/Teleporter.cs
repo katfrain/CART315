@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class Teleporter : MonoBehaviour
 {
-    [SerializeField] private Transform destination; // Set in Unity Inspector
+    [SerializeField] private Transform destination; 
     [SerializeField] private bool levelGenerator;
+    [SerializeField] private bool exit;
     
     public enum Direction { left, right, up, down };
     [SerializeField] private Direction _direction;
@@ -18,7 +19,7 @@ public class Teleporter : MonoBehaviour
     {
         Debug.Log("entering teleporter, is generator: " + levelGenerator);
         Camera camera = GameManager.Instance.MainCamera;
-        RoomGenerator roomGenerator = GameManager.Instance.RoomGenerator;
+        RoomGenerator roomGenerator = RoomGenerator.Instance;
 
         if (camera != null && roomGenerator != null)
         {
@@ -88,6 +89,18 @@ public class Teleporter : MonoBehaviour
             Debug.Log("Generating new level with door direction: " + doorDirection);
             roomGenerator.GenerateNewLevel(doorDirection);
             Debug.Log("New level generated.");
+        }
+
+        if (exit && roomGenerator != null)
+        {
+            RoomGenerator.Instance.clearRooms();
+            SceneLoader.Instance.LoadNewScene(1, () =>
+            {
+                Player.Instance.transform.position = Vector3.zero;
+                Shop.Instance.Visible = true;
+                RoomGenerator.Instance.levelCount = 0;
+                GameManager.Instance.setLevelText((0).ToString());
+            });
         }
         
     }
