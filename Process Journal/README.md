@@ -141,7 +141,6 @@ Legend ~
 ## Iterative Prototype 2 - 03.13.2025
 ### Untitled Roguelike - Dungeon Generation
 
-
 It's midterm week and the amount of energy it took to resist the urge to work on this game instead of studying was insane. With all the studying I had to do, I didn’t get as much done in this iteration as I’d hoped, but I did create a checklist and expanded on my previous map generation to make it fully playable and infinitely generated.
 
 The following outlines my minimum viable product, basically what I hope the accomplish by the end of the semester so I have something playable and maybe fun. I originally wanted to set up the foundation for the basic gameplay loop this week, but alas, I only managed to complete the infinite levels portion. Right now, I don’t have much beyond a player and some rooms, but the movement and dungeon flow are finally starting to feel exactly like what I pictured.
@@ -151,3 +150,30 @@ The following outlines my minimum viable product, basically what I hope the acco
 I have three more iterations and 5 more sections to go, so Im not exactly sure what the game is gonna look like by the last class, but honestly I’m not too worried. I’m having so much fun with this that I’ll probably keep working on it through the summer anyway.
 
 ![infinite_dungeon.gif](../Images/infinite_dungeon.gif)
+
+## Iterative Prototype 3 - 03.20.2025
+### Untitled Roguelike - Dungeon Generation
+
+I thought after midterms I’d be able to work on this much more, but I’ve just gotten (and will most likely continue to get) exponentially busier. With that said, this week my goal was to get the foundation of the basic gameplay loop running, and I almost fully completed that! The only thing left is to fix a bug for a feature that I wasn’t even planning to implement but did anyway because I knew I would need to, plus adding death in the dungeon that removes all or most of the player's coins.
+
+To recap, these were my goals for the week:
+
+![Tasklist.png](../Images/Tasklist.png)
+
+And I accomplished everything checked off, plus a little extra:
+- Switching scenes between being in the dungeon vs out of the dungeon
+  - This required lots of refactoring of my code and looooots of bug fixing, the bug that I still haven't fixed comes from this implementation
+  - Also started using more singletons than I should, I’ve heard it’s not best practice to use singletons (at least often) but I’ve decided I wnat to learn that the hard way >:)
+- And a little loading screen to cover up the weird transition between scenes, currently the loading bar just shows at full (maybe it's just loading too quick?) but it definitely looks better with it vs without it
+
+The following gif demonstrates:
+- The coins, coin counter, and shop all interacting together
+- The damage dealer, healer, and health bar all interacting together
+
+![StarterRoom.gif](../Images/StarterRoom.gif)
+
+I also added a 3rd door to the end room that allows the player to leave the dungeon instead of continuing deeper, by doing this they keep everything they’ve earned within the dungeon. The following gif shows that off as well as my not-so-fancy loading screen
+
+![ExitingDungeon.gif](../Images/ExitingDungeon.gif)
+
+Next week I'm planning on creating some sort of basic enemy as well as starting on some level design, fun stuff
