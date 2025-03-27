@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField] private float _moveSpeed = 5f; // Player movement speed
     [SerializeField] private TMP_Text _coinText;

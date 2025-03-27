@@ -177,3 +177,26 @@ I also added a 3rd door to the end room that allows the player to leave the dung
 ![ExitingDungeon.gif](../Images/ExitingDungeon.gif)
 
 Next week I'm planning on creating some sort of basic enemy as well as starting on some level design, fun stuff
+
+## Iterative Prototype 4 - 03.27.2025
+### Untitled Roguelike - Level Design and Enemies
+
+As promised, this week I focused on level design and enemy creation. I didn’t get as much enemy creation done as hoped, but I have one functional one! Which is something!
+
+I was able to use a lot of behavior I implemented in Treasure Keeper, such as the aim-and-shoot mechanics, which helped speed things up a bit. For the enemy type, I created a turret which simply aims at the player and shoots at a constant rate of fire. I used my player aim and shoot behaviour and just adjusted it so that it would aim at the player’s position instead of the mouse position, and shoot at an interval instead of on click.
+
+The other enemy I want to implement before the end of the semester is just the following enemy that will damage the player or excavator on contact, which I’ve also basically created already in Treasure Keeper.
+
+One thing I want to implement (and might have to implement with the following enemies) is a line-of-sight mechanic for the enemies. I’ve done this before in Godot and it wasn’t too difficult so I’m hoping it’ll be similar in Unity.
+
+Here’s how the turret looks:
+
+![Turret.gif](../Images/Turret.gif)
+
+And here’s some level design:
+
+![LevelDesign.png](../Images/LevelDesign.png)
+
+The legend makes everything pretty self-explanatory I hope, but basically all of these rooms will be prefabs and when generating a room of the category, it will pick one at random.
+
+I cant believe there’s only one more iterative prototype after this, I can’t promise that it will be anything crazy impressive by next week, but I still have hope it will be playable! I still need a name though…
