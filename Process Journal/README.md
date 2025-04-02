@@ -1,4 +1,21 @@
 # Process Journal
+
+## Table of Contents
+
+### Tiny Game Assignment
+- [Tiny Game - 01.23.2025](#tiny-game---01232025)
+### Exploration Prototypes
+- [Exploration Prototype 1 - 01.27.2025](#exploration-prototype-1---01272025)
+- [Exploration Prototype 2 - 02.04.2025](#exploration-prototype-2---02042025)
+- [Exploration Prototype 3 - 02.13.2025](#exploration-prototype-3---02132025)
+- [Exploration Prototype 4 - 02.20.2025](#exploration-prototype-4---02202025)
+### Iterative Prototypes
+- [Iterative Prototype 1 - 03.03.2025](#iterative-prototype-1---03032025)
+- [Iterative Prototype 2 - 03.13.2025](#iterative-prototype-2---03132025)
+- [Iterative Prototype 3 - 03.20.2025](#iterative-prototype-3---03202025)
+- [Iterative Prototype 4 - 03.27.2025](#iterative-prototype-4---03272025)
+- [Iterative Prototype 5 - 04.01.2025](#iterative-prototype-5---04012025)
+
 ## Tiny Game - 01.23.2025
 ### "A Trip to the Store"
 One thing I knew when starting the tiny game assignment was that I couldn’t allow myself to overthink it. I knew with too many options, I would get overwhelmed. I avoided looking at examples provided and chose the first game engine I remembered being mentioned - Bitsy. Again avoiding looking at other’s creations, I started by watching a simple 5-minute tutorial and got right into it.
@@ -200,3 +217,33 @@ And here’s some level design:
 The legend makes everything pretty self-explanatory I hope, but basically all of these rooms will be prefabs and when generating a room of the category, it will pick one at random.
 
 I cant believe there’s only one more iterative prototype after this, I can’t promise that it will be anything crazy impressive by next week, but I still have hope it will be playable! I still need a name though…
+
+## Iterative Prototype 5 - 04.01.2025
+### Untitled Roguelike - Game Loop!
+
+Ok! I made some progress! And made something playable? And it’s not an April Fools joke!
+
+This week I completed everything to give my game a relatively basic gameplay loop. You enter the dungeon, grab as many coins as you can, try not to die before reaching an exit room, and if you make it out with enough coins, get some upgrades!
+
+First I continued working on my turrets. Last week I didn’t have a line-of-sight mechanism in place yet, so the turrets knew where u were… at all times… in all rooms. Kinda scary. Its relatively simple, just uses a raycast and checks if the first collision detected is the player. With this is place I also wanted to add a slight transition animation from active to inactive so it wasnt snapping back and forth. Then I got a little carried away with particle effects and bullet trails, but I think it gives the game (which is using 0 external sprites) a bit more character and just feels better to play.
+
+![raycastLOS.gif](../Images/raycastLOS.gif)
+
+After this, I started on the levels. Using my designs from last week I started building each prefab and adjusted the room generation so it was selected from a 2D array instead of a 1D array, this way it chooses a random difficulty and a random level from said difficulty.
+
+Next, I implemented the upgrade system. This wasn't too bad to add in as I already had the base for the shop and it was mostly just adjusting some player variables, however I did need to make quite a few tweaks here and there. I also added some debug player stats for visibility, and increased the size of the health bar as the player increases their armor, to add some visual feedback.
+
+![upgradesbabyyy.gif](../Images/upgradesbabyyy.gif)
+
+Finally, to complete the actual gameplay loop, I added scaling to both the enemies' difficulty and the coin values as you enter each new level in the dungeon. This is to incentivize the player to go deeper once they have enough upgrades. Also, I’m not sure if this was this week or last week, but I also added a game over screen which appears when the player dies in the dungeon and prompts the player to respawn in the starter room while deducting a large percentage of their coin.
+
+So I’ve completed my ultimate goal of something playable! Yay! Now to make it fun for the final submission. Here are some goals to get there:
+- Make the chaser enemies. These should spawn from a designated spawn point and chases down a target, doing damage to the target if touching it.
+- Make the boss room w/ excavator. Chaser enemies would target the excavator instead of the player and come in hoards, similar to treasure keeper. Also implement a door lock so players cant leave while boss level is in progress.
+- Add some charm and uniqueness! My ultimate vision for this game had it, but having to boil it down to it’s most basic mechanics to have something I could present by the end of the semester has left it as a generic rogue-like with no identity. Im not sure how I can do this before the final submission, but it’s a goal regardless.
+- Think of a title. Please.
+
+Anyway, enjoy a few gifs of gameplay c:
+
+![actuallyplayingthegame.gif](../Images/actuallyplayingthegame.gif)
+![death.gif](../Images/death.gif)
