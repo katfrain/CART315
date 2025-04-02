@@ -6,21 +6,27 @@ using UnityEngine.SceneManagement;
 public class RoomGenerator : MonoBehaviour
 {
     [SerializeField] private int initialNumRooms = 25;  // Number of rooms to generate
-    [SerializeField] private Room[] roomPrefabs = new Room[5];  // Room prefabs based on difficulty
+    [SerializeField] private Room[] entryRoomPrefab = new Room[1];
+    [SerializeField] private Room[] easyRoomPrefabs = new Room[4];
+    [SerializeField] private Room[] mediumRoomPrefabs = new Room[4];
+    [SerializeField] private Room[] hardRoomsPrefabs = new Room[4];
+    [SerializeField] private Room[] exitRoomPrefabs = new Room[4];
     [SerializeField] private Door doorPrefab;
     [SerializeField] private DoorLevelSpawner dlsPrefab;
     [SerializeField] private LeaveDungeonDoor lddPrefab;
     [SerializeField] private float _height = 1;
     [SerializeField] private Room startRoom;
     [SerializeField] private DoorLevelSpawner initialSpawnDoor;
+    [SerializeField] public Shop[] Shops;
     
     private int numRooms;
+    private Room[][] _roomPrefabs = new Room[5][];
     private Room _entryRoom;
     private List<Room> _generatedRooms = new List<Room>(); // Keeps track of generated rooms
     private Queue<Room> _roomQueue = new Queue<Room>(); // Queue for breadth-first generation
     private List<DoorParent> _generatedDoors = new List<DoorParent>();
     private float _width;
-    private Camera camera;
+    private Camera roomCamera;
     private Player player;
     
     private int _levelCount = 0;
@@ -45,8 +51,13 @@ public class RoomGenerator : MonoBehaviour
         _levelCount = 0;
         _width = _height * 2;
         numRooms = initialNumRooms;
-        camera = GameManager.Instance.MainCamera;
-        DontDestroyOnLoad(camera.gameObject);
+        _roomPrefabs[0] = entryRoomPrefab;
+        _roomPrefabs[1] = easyRoomPrefabs;
+        _roomPrefabs[2] = mediumRoomPrefabs;
+        _roomPrefabs[3] = hardRoomsPrefabs;
+        _roomPrefabs[4] = exitRoomPrefabs;
+        roomCamera = GameManager.Instance.MainCamera;
+        DontDestroyOnLoad(roomCamera);
         _generatedRooms.Add(startRoom);
         DontDestroyOnLoad(startRoom.gameObject); 
         _generatedDoors.Add(initialSpawnDoor);
@@ -74,13 +85,20 @@ public class RoomGenerator : MonoBehaviour
             SceneLoader.Instance.LoadNewScene(dungeonSceneIndex, () =>
             {
                 StartRoomGeneration(GameManager.Instance.EntranceDoor);
-                Shop.Instance.Visible = false;
+                foreach (var shop in Shops)
+                {
+                    shop.Visible = false;
+                }
             });
         }
         else
         {
             // If already in the dungeon scene, generate rooms directly
-        StartRoomGeneration(GameManager.Instance.EntranceDoor);
+            StartRoomGeneration(GameManager.Instance.EntranceDoor);
+            foreach (var shop in Shops)
+            {
+                shop.Visible = false;
+            }
         }
     }
 
@@ -96,7 +114,9 @@ public class RoomGenerator : MonoBehaviour
             Debug.Log("Cleared previous rooms, doors, and spawners.");
             entryRoomPos = Vector3.zero;
             player.transform.position = Vector3.zero;
-            camera.transform.position = new Vector3(0, 0, -10);
+            roomCamera.transform.position = new Vector3(0, 0, -10);
+            Coin.upgradeScale();
+            Turret.scaleTurrets();
         }
         else
         {
@@ -118,7 +138,7 @@ public class RoomGenerator : MonoBehaviour
             }
         }
         // Instantiate the entry room
-        _entryRoom = Instantiate(roomPrefabs[0], entryRoomPos, Quaternion.identity);
+        _entryRoom = Instantiate(_roomPrefabs[0][0], entryRoomPos, Quaternion.identity);
         _entryRoom.transform.localScale = new Vector3(width, height, 0);
 
         // Set room type and doors
@@ -136,6 +156,7 @@ public class RoomGenerator : MonoBehaviour
         // Increment level count for next level
         _levelCount++;
         GameManager.Instance.setLevelText((_levelCount).ToString());
+        GameOverScreen.Instance.updateLevelText(_levelCount);
     }
     public void clearRooms()
     {
@@ -226,15 +247,17 @@ public class RoomGenerator : MonoBehaviour
                     Debug.Log("Position is valid: " + newPosition.ToString());
                     // Instantiate new room at the valid position
                     int temp = (int)currentRoom.RoomType + 2;
-                    if (temp >= roomPrefabs.Length) temp = roomPrefabs.Length - 1;
+                    if (temp >= _roomPrefabs.Length) temp = _roomPrefabs.Length - 1;
                     int difficulty = Random.Range(1, temp); // Random difficulty level for the new room
                     if (numRooms == 2)
                     {
                         difficulty = 4;
                         createDoorToNextLevel(newPosition, door);
                     }
-                    Room newRoom = Instantiate(roomPrefabs[difficulty], newPosition, Quaternion.identity);
-                    newRoom.transform.localScale = new Vector3(width, height, 0);
+                    int randomRoomPrefab = Random.Range(0, _roomPrefabs[difficulty].Length);
+                    Room newRoom = Instantiate(_roomPrefabs[difficulty][randomRoomPrefab], newPosition, Quaternion.identity);
+                    Debug.Log(width + " " +height);
+                    newRoom.transform.localScale = new Vector3(10, 10, 0);
                     Room.RoomTypes roomType = (Room.RoomTypes)difficulty + 1;
                     newRoom.SetRoomType(roomType);
                     _generatedRooms.Add(newRoom);
@@ -343,37 +366,48 @@ public class RoomGenerator : MonoBehaviour
         {
             case Room.DoorType.Left:
                 doorPosx -= _width / 2;
+                doorPosx += 0.5f;
                 doorRot = 180;
                 lddoorPosy -= _height / 2;
+                lddoorPosy += 0.5f;
                 lddoorRot = 270;
                 break;
             case Room.DoorType.Right:
                 doorPosx += _width / 2;
+                doorPosx -= 0.5f;
                 lddoorPosy -= _height / 2;
+                lddoorPosy += 0.5f;
                 lddoorRot = 270;
                 break;
             case Room.DoorType.Top:
                 doorPosy += _height / 2;
+                doorPosy -= 0.5f;
                 doorRot = 90;
                 lddoorPosx += _width / 2;
+                lddoorPosx -= 0.5f;
                 break;
             case Room.DoorType.Bottom:
                 doorPosy -= _height / 2;
+                doorPosy += 0.5f;
                 doorRot = 270;
                 lddoorPosx += _width / 2;
+                lddoorPosx -= 0.5f;
                 break;
         }
+        Debug.Log("door type is: " + door.ToString());
+        Debug.Log(doorPosx.ToString() + " " +doorPosy.ToString());
+        Debug.Log(lddoorPosx.ToString() + " " +lddoorPosy.ToString());
 
         // Instantiate a DoorLevelSpawner that will trigger the next level generation
         DoorLevelSpawner dls = Instantiate(dlsPrefab, new Vector3(doorPosx, doorPosy, 0), Quaternion.identity);
         dls.Direction = doorRot;
-        dls.Width = (float)(_width * 0.1);
+        dls.Width = (float)(_width * 0.05);
         dls.Height = (float)(_height * 0.4);
         _generatedDoors.Add(dls);
         
         LeaveDungeonDoor ldd = Instantiate(lddPrefab, new Vector3(lddoorPosx, lddoorPosy, 0), Quaternion.identity);
         ldd.Direction = lddoorRot;
-        ldd.Width = (float)(_width * 0.1);
+        ldd.Width = (float)(_width * 0.05);
         ldd.Height = (float)(_height * 0.4);
         _generatedDoors.Add(ldd);
     }

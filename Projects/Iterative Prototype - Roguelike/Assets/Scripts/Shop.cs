@@ -4,30 +4,32 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     [SerializeField] private float cost;
+    [SerializeField] private string shopName;
     [SerializeField] private int inventory;
-    [SerializeField] private float priceIncrease = 1.25f;
+    [SerializeField] private float priceIncrease = 1.75f;
     [SerializeField] private TMP_Text costText;
+    [SerializeField] private ShopType shopType;
+
+    private enum ShopType  {
+        ShootSpeed,
+        Damage,
+        PlayerSpeed,
+        Armor
+    }
     private Player player;
 
     private bool _visible = true;
     
-    public static Shop Instance;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        DontDestroyOnLoad(this.gameObject);
     }
     void Start()
     {
         player = Player.Instance;
+        updateInventory();
         updateText();
     }
 
@@ -36,6 +38,25 @@ public class Shop : MonoBehaviour
         if (other.tag == "Player")
         {
             Purchase();
+        }
+    }
+
+    private void updateInventory()
+    {
+        switch (shopType)
+        {
+            case ShopType.PlayerSpeed:
+                inventory = player.getPlayerSpeedMaxLevel() - 1;
+                break;
+            case ShopType.Armor:
+                inventory = player.getArmorMaxLevel() - 1;
+                break;
+            case ShopType.Damage:
+                inventory = player.getDamageMaxLevel() - 1;
+                break;
+            case ShopType.ShootSpeed:
+                inventory = player.getShootSpeedMaxLevel() - 1;
+                break;
         }
     }
 
@@ -55,7 +76,23 @@ public class Shop : MonoBehaviour
             Debug.Log("No inventory");
             return;
         }
-        if (player.makePurchase(cost))
+        bool sucess = false;
+        switch (shopType)
+        {
+            case ShopType.PlayerSpeed:
+                if (player.upgradePlayerSpeed(cost)) { sucess = true; }
+                break;
+            case ShopType.Armor:
+                if (player.upgradeArmor(cost)) { sucess = true; }
+                break;
+            case ShopType.Damage:
+                if (player.upgradeDamage(cost)) { sucess = true; }
+                break;
+            case ShopType.ShootSpeed:
+                if (player.upgradeShootSpeed(cost)) { sucess = true; }
+                break;
+        }
+        if (sucess)
         {
             inventory--;
             increasePrice();
@@ -66,8 +103,15 @@ public class Shop : MonoBehaviour
 
     void updateText()
     {
-        string formatted = cost.ToString("F2");
-        costText.text = "Shop\nCost: $" + formatted + "\nInventory: " + inventory;
+        if (inventory == 0)
+        {
+            costText.text = shopName + "\nMax Level!" ;
+        }
+        else
+        {
+            string formatted = cost.ToString("F2");
+            costText.text = shopName + "\nCost: $" + formatted + "\nInventory: " + inventory;
+        }
     }
 
     void increasePrice()

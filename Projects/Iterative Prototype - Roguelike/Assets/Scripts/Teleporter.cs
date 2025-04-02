@@ -99,9 +99,17 @@ public class Teleporter : MonoBehaviour
                         SceneLoader.Instance.LoadNewScene(1, () =>
                         {
                             Player.Instance.transform.position = Vector3.zero;
-                            Shop.Instance.Visible = true;
+                            foreach (var shop in RoomGenerator.Instance.Shops)
+                            {
+                                shop.Visible = true;
+                            }
+                            camera.transform.position = new Vector3(0, 0, -10);
+                            Player.Instance.Health = Player.Instance.MaxHealth;
                             RoomGenerator.Instance.levelCount = 0;
                             GameManager.Instance.setLevelText((0).ToString());
+                            GameOverScreen.Instance.updateLevelText(0);
+                            Coin.resetScale();
+                            Turret.resetTurrets();
                         });
                     } 
         }

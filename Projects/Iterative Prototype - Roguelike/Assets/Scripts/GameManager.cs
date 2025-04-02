@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class GameManager : MonoBehaviour
     public Room.DoorType EntranceDoor { get; set; }
     
     public LevelText lt { get; private set; }
+
+    [SerializeField] private TextMeshProUGUI gameOverLevelText;
 
     private void Awake()
     {
@@ -24,6 +28,13 @@ public class GameManager : MonoBehaviour
 
         MainCamera = Camera.main;
         lt = FindFirstObjectByType<LevelText>();
+        if (FindFirstObjectByType<EventSystem>() == null)
+        {
+            GameObject eventSystem = new GameObject("EventSystem");
+            eventSystem.AddComponent<EventSystem>();
+            eventSystem.AddComponent<StandaloneInputModule>();
+            DontDestroyOnLoad(eventSystem);
+        }
         
     }
 
@@ -39,4 +50,5 @@ public class GameManager : MonoBehaviour
     {
         lt.SetText(text);
     }
+    
 }
