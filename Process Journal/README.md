@@ -247,3 +247,5 @@ Anyway, enjoy a few gifs of gameplay c:
 
 ![actuallyplayingthegame.gif](../Images/actuallyplayingthegame.gif)
 ![death.gif](../Images/death.gif)
+
+[Back to top](#process-journal)
