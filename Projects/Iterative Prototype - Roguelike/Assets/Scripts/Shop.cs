@@ -20,12 +20,6 @@ public class Shop : MonoBehaviour
 
     private bool _visible = true;
     
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
     void Start()
     {
         player = Player.Instance;
@@ -110,7 +104,7 @@ public class Shop : MonoBehaviour
         else
         {
             string formatted = cost.ToString("F2");
-            costText.text = shopName + "\nCost: $" + formatted + "\nInventory: " + inventory;
+            costText.text = shopName + "\nCost: $" + formatted + "\nRemaining: " + inventory;
         }
     }
 

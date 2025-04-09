@@ -12,7 +12,7 @@ public class Coin : MonoBehaviour
     [SerializeField] private TMP_Text coinText;
     [SerializeField] private float scaleRate = 0.3f;
     [SerializeField] private static int scale = 0;
-    [SerializeField] private int value = 1;
+    private int value;
 
     void Start()
     {

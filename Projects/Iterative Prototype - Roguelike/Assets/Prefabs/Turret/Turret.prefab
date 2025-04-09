@@ -483,12 +483,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bullet: {fileID: 6007372739026580545, guid: eecfd8721a5f1444faf35a1640a70d2b, type: 3}
   BulletSpawn: {fileID: 6431393332095291601}
-  RateOfFire: 1
   gun: {fileID: 2464641645982993556}
-  maxHealth: 100
   _healthSlider: {fileID: 3994407487718922890}
   damageParticles: {fileID: 6184042487816633544, guid: e99a6d6fb612d394d87128417a616779, type: 3}
-  drop: {fileID: 2742887493719399655, guid: 87b550c29a721db449fa692c1c943a5c, type: 3}
+  drop: {fileID: 2742887493719399655, guid: d3de5af1ed8491c4ab572589c9f9e34e, type: 3}
 --- !u!61 &9170865642982836402
 BoxCollider2D:
   m_ObjectHideFlags: 0

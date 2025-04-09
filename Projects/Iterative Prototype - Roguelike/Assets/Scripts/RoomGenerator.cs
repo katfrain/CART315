@@ -17,7 +17,6 @@ public class RoomGenerator : MonoBehaviour
     [SerializeField] private float _height = 1;
     [SerializeField] private Room startRoom;
     [SerializeField] private DoorLevelSpawner initialSpawnDoor;
-    [SerializeField] public Shop[] Shops;
     
     private int numRooms;
     private Room[][] _roomPrefabs = new Room[5][];
@@ -77,16 +76,18 @@ public class RoomGenerator : MonoBehaviour
     public int levelCount { get { return _levelCount; } set { _levelCount = value; } }
     public void GenerateNewLevel(Room.DoorType entranceDoor)
     {
-        int dungeonSceneIndex = 2; 
+        int dungeonSceneIndex = 1; 
         GameManager.Instance.EntranceDoor = entranceDoor;
         // Check if already in the dungeon scene
         if (SceneManager.GetActiveScene().buildIndex != dungeonSceneIndex)
         {
             SceneLoader.Instance.LoadNewScene(dungeonSceneIndex, () =>
             {
+                Debug.Log("Not in a dungeon scene, attempting to set shops to invisible");
                 StartRoomGeneration(GameManager.Instance.EntranceDoor);
-                foreach (var shop in Shops)
+                foreach (var shop in GameManager.Instance.shops)
                 {
+                    Debug.Log("Setting shop to invisible: " + shop.name);
                     shop.Visible = false;
                 }
             });
@@ -94,9 +95,11 @@ public class RoomGenerator : MonoBehaviour
         else
         {
             // If already in the dungeon scene, generate rooms directly
+            Debug.Log("Already in a dungeon scene, attempting to set shops to invisible");
             StartRoomGeneration(GameManager.Instance.EntranceDoor);
-            foreach (var shop in Shops)
+            foreach (var shop in GameManager.Instance.shops)
             {
+                Debug.Log("Setting shop to invisible: " + shop.name);
                 shop.Visible = false;
             }
         }
@@ -117,6 +120,7 @@ public class RoomGenerator : MonoBehaviour
             roomCamera.transform.position = new Vector3(0, 0, -10);
             Coin.upgradeScale();
             Turret.scaleTurrets();
+            Chaser.scaleChasers();
         }
         else
         {
@@ -252,10 +256,10 @@ public class RoomGenerator : MonoBehaviour
                     if (numRooms == 2)
                     {
                         difficulty = 4;
-                        createDoorToNextLevel(newPosition, door);
                     }
                     int randomRoomPrefab = Random.Range(0, _roomPrefabs[difficulty].Length);
                     Room newRoom = Instantiate(_roomPrefabs[difficulty][randomRoomPrefab], newPosition, Quaternion.identity);
+                    if (difficulty == 4) createDoorToNextLevel(newPosition, door, newRoom);
                     Debug.Log(width + " " +height);
                     newRoom.transform.localScale = new Vector3(10, 10, 0);
                     Room.RoomTypes roomType = (Room.RoomTypes)difficulty + 1;
@@ -273,6 +277,8 @@ public class RoomGenerator : MonoBehaviour
                     newDoor.Width = (float)(_width * 0.1);
                     newDoor.Height = (float)(_height * 0.4);
                     _generatedDoors.Add(newDoor);
+                    currentRoom.DoorInstances.Add(newDoor);
+                    newRoom.DoorInstances.Add(newDoor);
 
                     // Enqueue the new room for further processing
                     _roomQueue.Enqueue(newRoom);
@@ -352,7 +358,7 @@ public class RoomGenerator : MonoBehaviour
         return true;
     }
 
-    private void createDoorToNextLevel(Vector3 position, Room.DoorType door)
+    private void createDoorToNextLevel(Vector3 position, Room.DoorType door, Room room)
     {
         float doorPosx = position.x;
         float doorPosy = position.y;
@@ -404,11 +410,13 @@ public class RoomGenerator : MonoBehaviour
         dls.Width = (float)(_width * 0.05);
         dls.Height = (float)(_height * 0.4);
         _generatedDoors.Add(dls);
+        room.DoorInstances.Add(dls);
         
         LeaveDungeonDoor ldd = Instantiate(lddPrefab, new Vector3(lddoorPosx, lddoorPosy, 0), Quaternion.identity);
         ldd.Direction = lddoorRot;
         ldd.Width = (float)(_width * 0.05);
         ldd.Height = (float)(_height * 0.4);
         _generatedDoors.Add(ldd);
+        room.DoorInstances.Add(ldd);
     }
 }

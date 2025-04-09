@@ -148,8 +148,8 @@ GameObject:
   - component: {fileID: 5008358842748520302}
   - component: {fileID: 654224521432070977}
   m_Layer: 12
-  m_Name: Coin
-  m_TagString: Untagged
+  m_Name: Coin 5
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,7 +188,6 @@ MonoBehaviour:
   coinSprite: {fileID: 7631624435891165603}
   coinText: {fileID: 5712439635185486933}
   scaleRate: 0.3
-  value: 1
 --- !u!58 &654224521432070977
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -285,7 +284,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &7966962732745708277
 MonoBehaviour:
@@ -402,7 +401,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.24705882, g: 0.24705882, b: 0.24705882, a: 1}
   m_FlipX: 0
@@ -489,9 +488,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 6
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.9960785, g: 0.80392164, b: 0.08235294, a: 1}
+  m_Color: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

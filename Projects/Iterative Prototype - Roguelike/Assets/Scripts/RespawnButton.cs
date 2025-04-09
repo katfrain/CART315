@@ -7,11 +7,11 @@ public class RespawnButton : MonoBehaviour
     public void OnClick()
     {
         RoomGenerator.Instance.clearRooms();
-        SceneLoader.Instance.LoadNewScene(1, () =>
+        SceneLoader.Instance.LoadNewScene(0, () =>
         {
             Player.Instance.transform.position = Vector3.zero;
             RoomGenerator.Instance.levelCount = 0;
-            foreach (var shop in RoomGenerator.Instance.Shops)
+            foreach (var shop in GameManager.Instance.shops)
             {
                 shop.Visible = true;
             }
@@ -24,5 +24,7 @@ public class RespawnButton : MonoBehaviour
         GameOverScreen.Instance.Enabled = false;
         Coin.resetScale();
         Turret.resetTurrets();
+        Chaser.resetChasers();
+        GameManager.Instance.destroyCoinsInScene();
     }
 }

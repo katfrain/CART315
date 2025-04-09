@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Excavator
+  - Obstacle
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -22,8 +25,8 @@ TagManager:
   - Doors
   - Healer
   - Shop
-  - 
-  - 
+  - Chaser Spawn
+  - Rooms
   - 
   - 
   - 

@@ -58,7 +58,7 @@ public class Turret : MonoBehaviour, IDamageable
 
     private void FixedUpdate()
     {
-        int layerMask = ~LayerMask.GetMask("Enemies", "Enemy Bullets", "Player Bullets");
+        int layerMask = ~LayerMask.GetMask("Enemies", "Enemy Bullets", "Player Bullets", "Rooms");
         RaycastHit2D ray = Physics2D.Raycast(transform.position, _player.transform.position - transform.position, Mathf.Infinity, layerMask);
         if (ray.collider != null)
         {

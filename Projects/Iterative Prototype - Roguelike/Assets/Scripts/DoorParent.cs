@@ -8,7 +8,16 @@ public class DoorParent : MonoBehaviour
     protected float _direction;
     protected Room _currentRoom;
     protected Room _nextRoom;
+    protected bool isLocked = false;
+    
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
 
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
+    }
     public Vector3 Position
     {
         get { return _position; }
@@ -66,6 +75,18 @@ public class DoorParent : MonoBehaviour
         _width = width;
         _height = height;
         _direction = direction;
+    }
+
+    public virtual void Lock()
+    {
+        isLocked = true;
+        spriteRenderer.color = new Color(118f / 255f, 41f / 255f, 37f / 255f, 1f);
+    }
+
+    public virtual void Unlock()
+    {
+        isLocked = false;
+        spriteRenderer.color = originalColor;
     }
 
 }

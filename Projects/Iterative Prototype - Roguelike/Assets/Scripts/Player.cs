@@ -10,13 +10,14 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private float _maxHealth = 100f;
     [SerializeField] private float _damage;
     [SerializeField] private float _shootSpeed;
+    [SerializeField] private float _rateOfFire = 0.3f;
 
     [Header("Upgrade rates")]
-    [SerializeField] private float _shootSpeedUpgradeRate = 1.1f;
+    [SerializeField] private float _shootSpeedUpgradeRate = 1.05f;
     [SerializeField] private float _damageUpgradeRate = 1.2f;
     [SerializeField] private float _playerSpeedUpgradeRate = 1.1f;
     [SerializeField] private float _armorUpgradeRate = 1.15f;
-    
+    [SerializeField] private float _rateOfFireUpgradeRate = 0.1f;
     
     [Header("Player UI")]
     [SerializeField] private Slider _healthSlider;    
@@ -101,6 +102,8 @@ public class Player : MonoBehaviour, IDamageable
             {
                 _shootSpeed *= _shootSpeedUpgradeRate;
                 BulletBehaviour.setBulletSpeed(_shootSpeed);
+                _rateOfFire -= (_rateOfFire * (_rateOfFireUpgradeRate));
+                PlayerAimAndShoot.fireRate = _rateOfFire;
                 _shootSpeedLevel++;
                 updateStats();
                 return true;
@@ -207,6 +210,7 @@ public class Player : MonoBehaviour, IDamageable
         
         BulletBehaviour.setDamage(_damage);
         BulletBehaviour.setBulletSpeed(_shootSpeed);
+        PlayerAimAndShoot.fireRate = _rateOfFire;
 
         _baseArmor = _maxHealth;
         _baseDamage = _damage;

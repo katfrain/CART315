@@ -169,7 +169,7 @@ MonoBehaviour:
   BulletDestroyTime: 3
   whatDestroysBullet:
     serializedVersion: 2
-    m_Bits: 124232
+    m_Bits: 116040
   damageParticles: {fileID: 6184042487816633544, guid: b7e94ba8aa925fb46bbd6f1cc006af61, type: 3}
 --- !u!96 &-6403041776964477336
 TrailRenderer:

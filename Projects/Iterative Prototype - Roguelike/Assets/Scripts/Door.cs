@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Door : DoorParent
 {
     [SerializeField] private Teleporter entryTeleporter, exitTeleporter;
-    
+
     public override float Direction
     {
         get { return _direction; }
@@ -31,5 +32,19 @@ public class Door : DoorParent
                     break;
             }
         }
+    }
+
+    public override void Lock()
+    {
+        base.Lock();
+        entryTeleporter.Lock();
+        exitTeleporter.Lock();
+    }
+
+    public override void Unlock()
+    {
+        base.Unlock();
+        entryTeleporter.Unlock();
+        exitTeleporter.Unlock();
     }
 }

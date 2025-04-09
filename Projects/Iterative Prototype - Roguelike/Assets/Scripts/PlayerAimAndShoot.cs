@@ -5,11 +5,13 @@ public class PlayerAimAndShoot : MonoBehaviour
 {
     [SerializeField] private GameObject Bullet;
     [SerializeField] private Transform BulletSpawn;
+    public static float fireRate = 0.3f;
+    private float lastShotTime = 0f;
     
     private GameObject bulletInst;
     private Vector2 worldPosition;
     private Vector2 direction;
-    private void Update()
+    private void FixedUpdate()
     {
         HandleGunRotation();
         HandleGunShooting();
@@ -24,9 +26,10 @@ public class PlayerAimAndShoot : MonoBehaviour
 
     private void HandleGunShooting()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current.leftButton.isPressed && Time.time - lastShotTime >= fireRate)
         {
             bulletInst = Instantiate(Bullet, BulletSpawn.position, transform.rotation);
+            lastShotTime = Time.time;
         }
     }
 }

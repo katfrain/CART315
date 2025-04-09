@@ -28,4 +28,16 @@ public class LeaveDungeonDoor : DoorParent
             }
         }
     }
+    
+    public override void Lock()
+    {
+        base.Lock();
+        entryTeleporter.Lock();
+    }
+
+    public override void Unlock()
+    {
+        base.Unlock();
+        entryTeleporter.Unlock();
+    }
 }
