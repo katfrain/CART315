@@ -106,7 +106,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -166,12 +166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f39cedd6721ac649880e4c0831e4cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletSpeed: 15
   BulletDestroyTime: 3
   whatDestroysBullet:
     serializedVersion: 2
     m_Bits: 124232
-  BulletDamage: 10
   damageParticles: {fileID: 6184042487816633544, guid: b7e94ba8aa925fb46bbd6f1cc006af61, type: 3}
 --- !u!96 &-6403041776964477336
 TrailRenderer:
