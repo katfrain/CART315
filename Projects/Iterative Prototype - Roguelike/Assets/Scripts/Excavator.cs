@@ -57,11 +57,13 @@ public class Excavator : MonoBehaviour, IDamageable
 
     public void hideCanvas()
     {
+        UpdateHealthSlider();
         canvas.enabled = false;
     }
 
     public void showCanvas()
     {
+        UpdateHealthSlider();
         canvas.enabled = true;
     }
     

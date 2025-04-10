@@ -248,4 +248,41 @@ Anyway, enjoy a few gifs of gameplay c:
 ![actuallyplayingthegame.gif](../Images/actuallyplayingthegame.gif)
 ![death.gif](../Images/death.gif)
 
+## Final Game - 04.10.2025
+### Relict
+
+Final week! While I don’t have a fully finished game that I’d want to showcase on my Itch, I’m super happy with the progress I’ve made and I’m super excited to get feedback from my classmates (and playtest their games as well!)
+
+This week I accomplished the goals I set for myself last week, which included making the chasing enemy (which I aptly named Chaser), make the boss level with an excavator, implement door locks, and while I didn’t get the chance to personalize the game too much, I think the sprite for the chasers are quite cute :3 And, I came up with a title: <b><i>Relict</i></b>
+
+I chose relict because it means “a thing which has survived from an earlier period or in a primitive form.” which I feel is fitting with the narrative I eventually want to implement, but is vague enough to make sense even without the narrative. 
+
+I wont go into all the technical details of the implementation of these features but here’s a gif of testing the chasers before adding their damage, so they look like they are just aggressively trying to hug the player.
+
+![hugs.gif](../Images/hugs.gif)
+
+And here’s one of the excavator levels!
+
+![excavator.gif](../Images/excavator.gif)
+
+This week also involved a lot of bug fixing, and also for the first time, playtesting! I got my roommate to sit down and try it out, and while she doesn’t play games much she picked it up pretty quickly and told me that the drive to get upgrades was really addicting (mission accomplished). It must of been because when I asked my boyfriend to try it, he almost got the character fully maxed out, which is further than I’ve ever gotten. During his playtest, we found some bugs and decided on a few small changes that I think improved the game a lot. We also workshopped some future features for the game if I decide to continue with it such as:
+
+- Health pack drops/purchasable consumables
+- Checkpoints for the dungeon similar to Stardew Valleys Mines (Ex. if you’ve reached level 5, you can start from there instead of starting from 1)
+- A map consumable (dropped or purchasable) which reveals the map for a level
+
+Here’s some footage of his playthrough :)
+
+![playtest-1.gif](../Images/playtest-1.gif)
+![playtest-2.gif](../Images/playtest-2.gif)
+
+I’m super excited to have something playable and functional at this point, and super hyped that someone actually enjoys playing it!
+
+I am excited to get feedback in class and will hopefully be able to make some adjustments for the final submission, as well as a couple extra changes such as adding some UI & cleaning stuff up.
+
+And if you want to play, it’s being hosted on github pages, check it out!
+
+https://katfrain.github.io/CART315/
+
+
 [Back to top](#process-journal)
